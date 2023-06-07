@@ -1,0 +1,17 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        // find the break point where the lesser element is found than the next element
+       int n = nums.size() ;
+       int arr[n] ;
+       for( int i=0; i<nums.size(); i++ ){
+        arr[i] = nums[i] ;
+       }
+
+      next_permutation(arr,arr+n);
+      for( int i=0; i<n; i++ ){
+        nums[i] = arr[i];
+       }
+    }
+
+};
