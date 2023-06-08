@@ -1,0 +1,18 @@
+ class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int pref_sum = 0 ;
+        int ans = INT_MIN ;
+       
+        for( int i=0; i<nums.size(); i++ ){
+          
+           // traversing vector and finding the max sum if prior sum is less then the next element
+           // update it with the larger number  
+           pref_sum  = max( pref_sum+nums[i], nums[i] );
+
+           // everytime store the value which is higher
+           ans = max(ans, pref_sum) ;
+        }
+        return ans;
+    }
+};
