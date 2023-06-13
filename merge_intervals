@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        
+        sort(intervals.begin(), intervals.end());
+        vector<vector<int>>ans ;
+        int n = intervals.size() ;
+
+        for( int i=0; i<n; i++ ){
+            
+            if(ans.empty()){
+                ans.push_back(intervals[i]) ;
+            }
+            else{
+                // taking last interval of the vector
+                vector<int>&v = ans.back() ;
+                
+                // end time of previous interval
+                int y = v[1] ;
+
+                //compare whether overlap or not 
+                if( intervals[i][0] <= y ){
+                    v[1] = max(intervals[i][1], y) ;
+                }
+                else{
+                    // if doesnt overlap then push the interval
+                    ans.push_back(intervals[i]) ;
+                }
+            }
+        }
+        return ans; 
+
+    }
+};
