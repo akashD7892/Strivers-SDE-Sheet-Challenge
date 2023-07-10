@@ -1,0 +1,26 @@
+To reverse we just have to change the direction of bond between the nodes 
+1 -> 2 -> 3 -> 4 -> 5    to     1 <- 2 <- 3 <- 4 <- 5 
+
+ListNode* reverseList(ListNode* head) {
+       if( head == NULL || head->next == NULL )
+        return head ;
+
+       ListNode*temp = head->next ;
+       ListNode*forw = temp->next ;
+
+       head->next = NULL ;
+       
+       while( temp ){
+          temp->next = head ;
+          head = temp ;
+          temp = forw ;
+
+          if( forw )
+           forw = forw->next ;
+       }
+
+       return head ;
+
+       
+    }
+};
