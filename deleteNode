@@ -1,0 +1,25 @@
+In this we have to delete the given node but we haven't the head of the linked list 
+  1->2->3->4->5 
+  just delete 4 you dont have access to 1 node 
+
+  copy the next value of the node and at the end direct it to NULL
+
+  1->2->3->5->NULL
+
+
+
+void deleteNode(ListNode* node) {
+        
+        ListNode *temp = node ;
+        while( temp->next != NULL )
+        {   
+            temp->val = temp->next->val;
+            if( temp->next->next == NULL ){
+                temp->next = NULL ;
+                break;
+            }
+            temp = temp->next;
+        }
+        
+    }
+};
