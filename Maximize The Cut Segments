@@ -1,0 +1,33 @@
+//recursion and memorisation
+ public:
+    //Function to find the maximum number of cuts.
+    int solve( int n, int x, int y, int z, vector<int>&dp ){
+        //base case 
+        if( n == 0 )
+         return 0 ;
+         
+        if( n < 0 )
+         return INT_MIN ;
+        
+        if( dp[n] != 0 )
+         return dp[n] ;
+        
+        int a = solve(n-x,x,y,z,dp)+1 ;
+        int b = solve(n-y,x,y,z,dp)+1 ;
+        int c = solve(n-z,x,y,z,dp)+1 ;
+        
+       // int ans = max(a,max(b,c)) ;
+       dp[n] = max(a,max(b,c)) ;
+       return dp[n] ;
+       
+    }
+    
+    int maximizeTheCuts(int n, int x, int y, int z)
+    {
+        //Your code here
+        vector<int>dp(n+1,0);
+        if( solve( n,x,y,z,dp ) < 0 )
+         return 0;
+        
+        return solve( n,x,y,z,dp);
+    }
