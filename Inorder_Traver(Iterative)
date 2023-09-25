@@ -1,0 +1,58 @@
+class Solution {
+public:
+    // Moris Traversal 
+Node* find( Node * root ){
+    
+    if( root -> left != NULL )
+     root = root->left ;
+
+    while( root->right != NULL ){
+        root = root -> right ;
+    }
+
+    return root ;
+}
+
+void solve( Node *root, vector<int>&v ){
+    
+    Node * current = root ;
+    while( current != NULL ){
+
+        //if left doesnt exist push root node and go to right
+        if( current -> left == NULL ){
+           
+            v.push_back( current -> data ) ;
+            current = current -> right ;
+        
+        }
+        else {
+            //find the predecessor means go left and then go right until its null
+             Node *curr = current -> left ;
+
+             while( curr -> right != NULL && curr -> right != current){
+                curr = curr -> right ;
+            }
+            
+            // this means predece is not attached to root node just attached it 
+            if( curr -> right == NULL ){
+                curr -> right = current ;
+                current = current -> left ;
+            }
+            else  {
+                //if already precedence have a attached node then remove it 
+                curr -> right = NULL ;
+                v.push_back( current -> data ) ;
+                current = current -> right ;
+            }
+        }
+    }
+    
+}
+    vector<int> inOrder(Node* root)
+    {
+        //code here
+         vector<int>v ;
+         solve( root, v ); 
+         return v ;
+    }
+};
