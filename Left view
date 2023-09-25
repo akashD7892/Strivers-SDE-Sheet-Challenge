@@ -1,0 +1,23 @@
+Approach - for a level there must be single ele, so check if level and size of continer is same then push new element otherwise go left or right ; 
+
+
+void solve( TreeNode<int>*root, vector<int>&v, int level ){
+    if( root == NULL )
+     return  ;
+
+    if( level == v.size() )
+     v.push_back( root->data );
+    
+    solve( root->left, v, level+1 ) ;
+    solve( root->right, v, level+1 ) ; 
+
+}
+
+vector<int> getLeftView(TreeNode<int> *root)
+{
+    //    Write your code here
+    // at a level there would be only one element so level must be same as the no of ele in array
+    vector<int>v ;
+    solve( root, v, 0 ) ;
+    return v ;
+}
