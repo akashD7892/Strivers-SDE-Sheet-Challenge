@@ -1,0 +1,23 @@
+void inorder( TreeNode * root, vector<int>&ino, vector<int>&pre, vector<int>&post ) {
+    if( root == NULL )
+     return  ;
+    
+    pre.push_back(root->data) ;
+    inorder( root->left, ino, pre, post );
+
+    ino.push_back( root->data ) ;
+    inorder( root->right, ino, pre, post ) ;
+
+    post.push_back( root->data ) ;
+}
+
+
+vector<vector<int>> getTreeTraversal(TreeNode *root){
+    // Write your code here.
+    vector<int> ino, pre, post ;
+    vector< vector<int>> ans ;
+
+    inorder( root, ino, pre, post );
+
+    return {ino, pre, post} ;
+}
