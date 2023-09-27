@@ -1,0 +1,30 @@
+Tips - String is not used to reference means while backtracking it doesnt have any information of lower nodes so we dont need to pop back the element but we if we use ampersant then we need to backtrack . 
+
+
+void solve( BinaryTreeNode<int>*root, vector<string>&v, string s ) {
+    
+    if( root == NULL )
+     return  ;
+    
+    s = s + to_string(root->data)+" " ;
+
+    if (root->left == NULL && root->right == NULL) {
+     
+     v.push_back(s);
+     return;
+    }
+    
+    // s = s + to_string(root->data)  ;
+    solve( root->left, v, s ) ;
+
+    solve( root->right, v, s ) ;
+
+}
+vector <string> allRootToLeaf(BinaryTreeNode<int> * root) {
+    // Write your code here.
+    vector<string> v ;
+    string s = "" ;
+    solve( root, v, s ) ;
+
+    return v ;
+}
