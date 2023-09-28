@@ -1,0 +1,15 @@
+int solve( TreeNode<int>*root ) {
+    if( root == NULL )
+     return 0 ;
+
+    int ans = INT_MIN ;
+
+    ans = max( solve( root->left), solve( root->right ) ) + 1 ;
+
+    return ans ;
+}
+int heightOfBinaryTree(TreeNode<int> *root)
+{
+	// Write your code here.
+    return solve( root ) ;
+}
