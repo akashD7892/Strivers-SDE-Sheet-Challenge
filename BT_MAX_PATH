@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int solve( TreeNode*root, int &sum ) {
+        if( root == NULL )
+         return 0 ;
+
+        int left = solve( root->left, sum ) ;
+        int right = solve( root->right, sum ) ; 
+
+        sum = max( sum , max( left+right+root->val, max( root->val, root->val+max( left, right)) )) ;
+
+        return max( root->val + max(left, right), root->val ) ;
+    }
+    int maxPathSum(TreeNode* root) {
+        
+        if ( !root->left && !root->right ){
+             return root->val ;
+        } 
+
+        int sum  = INT_MIN; 
+        int ans = solve( root, sum ) ;
+        
+        if( ans > sum )
+         return ans ;
+        else 
+         return sum ;
+    }
+};
