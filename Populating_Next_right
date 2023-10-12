@@ -1,0 +1,32 @@
+class Solution {
+public:
+    Node* connect(Node* root) {
+        
+        if( !root ) return nullptr ;
+
+        queue< Node* > q ;
+        q.push( root ) ; 
+
+        while( !q.empty() ) {
+
+            int n = q.size() ;
+            Node* rightPointer = NULL ;
+            while( n-- ) {
+
+                Node* curr = q.front() ;
+                q.pop() ;
+
+                curr->next = rightPointer ;
+                rightPointer = curr ;
+                
+                if( curr -> right ){
+                    q.push( curr -> right ) ;
+                    q.push( curr -> left ) ;
+                }
+
+            }
+        }
+
+        return root ;
+    }
+};
