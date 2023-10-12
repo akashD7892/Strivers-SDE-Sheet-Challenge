@@ -1,0 +1,30 @@
+class Solution {
+public:
+    TreeNode* solve( vector<int>&preorder, vector<int>&inorder, int &index, int inorIndex, int inorLast, int &n, unordered_map<int,int>&mp ) {
+       
+       if( index > n || inorIndex > inorLast )
+        return NULL ;
+       
+       int element = preorder[ index ] ;
+
+       // find the position of element in map 
+       int position = mp[ preorder[ index++ ] ] ;
+       TreeNode*root = new TreeNode(element) ;
+
+    root->left = solve( preorder, inorder, index, inorIndex, position-1, n, mp) ;
+    root->right = solve( preorder, inorder, index, position+1, inorLast, n, mp) ; 
+
+    return root ;
+    }
+
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int n = preorder.size() ;
+        unordered_map<int,int>mp ;
+        for( int i=0; i<inorder.size(); i++ ) {
+            mp[inorder[i]] = i ;
+        }
+        int index =  0 ;
+    // preorder, inorder, index of preorder, index of inorder start, end, map
+        return solve( preorder, inorder, index, 0, n-1, n,mp ) ;
+    }
+};
