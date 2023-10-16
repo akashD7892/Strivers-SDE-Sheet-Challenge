@@ -1,0 +1,31 @@
+int findCeil(Node* root, int input) {
+    
+    int ans = INT_MAX  ;
+    queue<Node*>q ;
+    q.push(root) ;
+    
+    while( !q.empty() ) {
+        
+        Node* front = q.front() ;
+        q.pop() ;
+        
+        if( front->data >= input ){
+            ans = min(front->data, ans) ;
+        }
+        
+        
+        if( front->left ){
+            q.push(front->left) ;
+        }
+        
+        if( front->right) {
+            q.push( front->right) ;
+        }
+    }
+    if( ans == INT_MAX )
+     return -1 ;
+     
+    return ans ;
+
+    // Your code here
+}
