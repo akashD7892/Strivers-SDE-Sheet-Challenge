@@ -1,0 +1,30 @@
+class Solution
+{
+    public:
+     void solve( Node* root, int &ans, int &k ) {
+        
+        if( root == NULL )
+         return  ;
+        
+        solve( root->right, ans, k ) ;
+
+        if( k == 1 ) {
+         ans = root->data ; 
+        }
+
+
+        k--;
+        solve( root->left, ans, k ) ;
+
+        
+    }
+    
+    int kthLargest(Node *root, int K)
+    {
+        //Your code here
+        int ans = -1 ;
+
+        solve( root, ans, K ) ;
+        return ans ;
+    }
+};
